@@ -1,4 +1,4 @@
-//(function() {
+(function() {
     var Case = function(model, os, description, test) {
         this.model = model;
         this.os = os;
@@ -8,11 +8,14 @@
     Case.prototype = {
         matches:function(model, os) {
             if (this.model != 'all' && model != 'all' && this.model != model) return false;
-            if (this.os != 'all' && os != 'all' && this.os != os) return false;
+            if (this.os != 'all' && os != 'all') {
+                var t = this.os.split('.');
+                    o = os.split('.');
+                for (var i = 0, l = t.length; i < l; i++) {
+                    if (parseInt(o[i]) != parseInt(t[i])) return false;
+                }
+            }
             return true;
-        },
-        run:function() {
-            
         }
     };
     var isBB = false,
@@ -32,7 +35,10 @@
             if (ua.indexOf(bb) > -1) {
                 isBB = true;
                 if (ua.indexOf('WebKit') > -1) {
-                    os = '6.0.0';
+                    // Regex to catch important tidbits out of this sort of format:
+                    // Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en-US) AppleWebKit/534.1+ (KHTML, like Gecko) Version/6.0.0.141 Mobile Safari/534.1
+                    model = t.match(/BlackBerry (\d{4}])/)[1];
+                    os = t.match(/Version\/(\d\.\d\.\d\.\d{3})/)[1];
                 } else {
                     var tokens = navigator.userAgent.split('/');
                     model = tokens[0].substr(bb.length);
@@ -64,4 +70,4 @@
         detect(navigator.userAgent);
         render(document.body);
     }, false);
-//})();
+})();
