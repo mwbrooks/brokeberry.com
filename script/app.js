@@ -1,4 +1,4 @@
-(function() {
+//(function() {
     var Case = function(model, os, description, test) {
         this.model = model;
         this.os = os;
@@ -43,9 +43,9 @@
         render = function(el) {
             // Renders cases based on detection results.
             var itemTemplate = ['<div class="item">',
-                                '   <p>description</p>'
-                                '   <a href="javascript:void(0);">Run me</div>'
-                                '   <div class="holder"></div>'
+                                '   <p>description</p>',
+                                '   <a href="javascript:void(0);">Run me</div>',
+                                '   <div class="holder"></div>',
                                 '</div>'].join('');
             for (var i = 0, l = cases.length; i < l; i++) {
                 var t = cases[i];
@@ -64,4 +64,4 @@
         detect(navigator.userAgent);
         render(document.body);
     }, false);
-})();
+//})();
