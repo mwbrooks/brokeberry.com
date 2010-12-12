@@ -41,8 +41,8 @@
                     os = t.match(/Version\/(\d\.\d\.\d\.\d{3})/)[1];
                 } else {
                     var tokens = navigator.userAgent.split('/');
-                    model = tokens[0].substr(bb.length);
-                    os = tokens[1];
+                    model = tokens[0].match(/\d{4}/)[0];
+                    os = tokens[1].match(/\d\.\d\.\d\.\d*/)[0];
                 }
             }
         },
