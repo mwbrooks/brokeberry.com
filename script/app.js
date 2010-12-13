@@ -21,9 +21,9 @@
         render = function(el) {
             // Renders cases based on detection results.
             var itemTemplate = ['<div class="item">',
-                                '   <p>description</p>',
-                                '   <a href="javascript:void(0);">Run me</a>',
-                                '   <div class="holder"></div>',
+                                '<p>description</p>',
+                                '<a href="javascript:void(0);">Run me</a>',
+                                '<div class="holder"></div>',
                                 '</div>'].join('');
             for (var i = 0, l = cases.length; i < l; i++) {
                 var t = cases[i];
@@ -31,13 +31,13 @@
                     el.innerHTML += itemTemplate.split('description').join(t.description);
                     var n = el.childNodes.length,
                         cont = el.childNodes[n-1],
-                        holder = cont.childNodes[2],
+                        holder = cont.childNodes[cont.childNodes.length-1],
                         listener = function(e) {
                             holder.innerHTML = '';
                             t.test(holder);
                             this.innerHTML = 'Run me again';
                         };
-                    cont.childNodes[1].addEventListener('click', listener, false);
+                    cont.childNodes[cont.childNodes.length-2].addEventListener('click', listener, false);
                 }
             }
         };
