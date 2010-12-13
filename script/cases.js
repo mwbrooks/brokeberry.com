@@ -31,7 +31,7 @@ Case.prototype = {
         } else {
             return this.isMatch(this[prop], val);
         }
-    }
+    },
     isOS:function(str) {
         if (str.indexOf('.') > -1) return true;
         else return false;
