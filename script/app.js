@@ -22,7 +22,7 @@
             // Renders cases based on detection results.
             var itemTemplate = ['<div class="item">',
                                 '   <p>description</p>',
-                                '   <a href="javascript:void(0);">Run me</div>',
+                                '   <a href="javascript:void(0);">Run me</a>',
                                 '   <div class="holder"></div>',
                                 '</div>'].join('');
             for (var i = 0, l = cases.length; i < l; i++) {
