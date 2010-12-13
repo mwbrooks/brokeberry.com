@@ -60,6 +60,7 @@ Case.prototype = {
         return false;
     },
     isMatch:function(one, two) {
+        if (one == 'all' || two == 'all') return true;
         if (this.isRange(one)) return this.inRange(one, two);
         else {
             if (this.isOS(one)) {
