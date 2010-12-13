@@ -9,7 +9,7 @@
                 if (ua.indexOf('WebKit') > -1) {
                     // Regex to catch important tidbits out of this sort of format:
                     // Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en-US) AppleWebKit/534.1+ (KHTML, like Gecko) Version/6.0.0.141 Mobile Safari/534.1
-                    model = ua.match(/BlackBerry (\d{4}])/)[1];
+                    model = ua.match(/BlackBerry (\d{4})/)[1];
                     os = ua.match(/Version\/(\d\.\d\.\d\.\d{3})/)[1];
                 } else {
                     var tokens = ua.split('/');
