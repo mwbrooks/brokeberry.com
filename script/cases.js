@@ -82,9 +82,8 @@ var cases = [
         'all',
         'Torch users: set an image to percentage width or height, crash your browser.', 
         function(container) {
-            var img = document.createElement('img');
-            img.src = 'style/images/brokeberry-coming-soon.png';
-            container.appendChild(img);
-            img.style.width = '60%'; // boom
+            var img = '<img src="style/images/brokeberry-coming-soon.png" width="20%" />';
+            alert('Your browser is gonna blow up now.');
+            container.innerHTML = img;
     })
 ];
