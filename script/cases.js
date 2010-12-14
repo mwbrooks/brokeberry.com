@@ -85,5 +85,12 @@ var cases = [
             var img = '<img src="style/images/brokeberry-coming-soon.png" style="height:20%;" />';
             alert('Your browser is gonna blow up now.');
             container.innerHTML = img;
-    })
+    }),
+    new Case('8350-9000',
+        '4.6.0.000-4.6.0.999',
+        '4.6 browser: % absolute-positioned elements change position based on scroll height',
+        function(container) {
+            // todo;
+        }
+    )
 ];
