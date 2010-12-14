@@ -24,10 +24,11 @@ Case.prototype = {
     },
     matchesTo:function(prop, val) {
         if (typeof this[prop] == 'object' && this[prop] instanceof Array) {
+            var ret = false;
             for (var i = 0, l = this[prop].length; i < l; i++) {
-                if (!this.isMatch(this[prop][i], val)) return false;
+                ret = ret || this.isMatch(this[prop], val);
             }
-            return true;
+            return ret;
         } else {
             return this.isMatch(this[prop], val);
         }
