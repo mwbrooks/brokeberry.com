@@ -50,13 +50,12 @@ Case.prototype = {
         if (!isOS) { 
             if (val >= min && val <= max) return true;
         } else {
-            var mins = min.split('.'),
-                maxs = max.split('.'),
-                vals = val.split('.');
-            for (var i = 0, l = mins.length; i < l; i++) {
-                if (vals[i] > maxs[i] || vals[i] < mins[i]) return false;
-            }
-            return true;
+            if (min == val || max == val) return true;
+            var n = function(a) { return parseInt(a.split('.').join(''));};
+            var mi = n(min),
+                ma = n(max),
+                v = n(val);
+            if (v >= mi && v <= ma) return true;
         }
         return false;
     },
