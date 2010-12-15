@@ -85,12 +85,27 @@ var cases = [
             var img = '<img src="style/images/brokeberry-coming-soon.png" style="height:20%;" />';
             alert('Your browser is gonna blow up now.');
             container.innerHTML = img;
-    }),
-    new Case('8350-9000',
+        }
+    ),
+    new Case('all',
         '4.6.0.000-4.6.0.999',
         '4.6 browser: % absolute-positioned elements change position based on scroll height',
         function(container) {
             // todo;
+        }
+    ),
+    new Case('all',
+        '4.6.0.000-4.6.1.999',
+        '4.6.x browser: you have no Array.prototype.indexOf :(',
+        function(container) {
+            alert('Array.prototype.indexOf is: ' + Array.prototype.indexOf);
+            container.innerHTML = ['<p>At least you can patch it dynamically. JavaScript, hurray for it being self-headling!</p>',
+                                    '<pre>if (typeof Array.prototype.indexOf == "undefined") {',
+                                    '   Array.prototype.indexOf = function(v) {',
+                                    '       for (var i = this.length; i-- && this[i] != v;);',
+                                    '       return i;',
+                                    '   }',    
+                                    '}</pre>'].join('\n');
         }
     )
 ];
