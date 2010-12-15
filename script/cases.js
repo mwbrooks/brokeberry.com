@@ -42,7 +42,7 @@ Case.prototype = {
         else return false;
     },
     inRange:function(val, range) {
-        var spread = range.split('-'),
+        var spread = range.replace(/\s*/g, '').split('-'),
             isOS = this.isOS(range[0]),
             min = (isOS?range[0]:parseInt(range[0])),
             max = (isOS?range[1]:parseInt(range[1]));
@@ -88,7 +88,7 @@ var cases = [
         }
     ),
     new Case('all',
-        '4.6.0.000-4.6.0.999',
+        '4.6.0.000-4.6.1.999',
         '4.6 browser: % absolute-positioned elements change position based on scroll height',
         function(container) {
             // todo;
