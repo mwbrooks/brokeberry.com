@@ -5,5 +5,37 @@ body {
 }
 
 body {
-  background:#000000 url(images/brokeberry-coming-soon.png) no-repeat 50% 50%;
+  color:#FFFFFF;
+  background:#000000 url(images/brokeberry-coming-soon.png) fixed;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  padding-top:25px;
+}
+
+ul.menu {
+  background-image: url(images/black_bg.png);
+  border-color:#666666;
+  border-style:solid;
+  border-radius:10px;
+  border-width:2px;
+  margin:0px auto;
+  padding:10px;
+  width:300px;
+}
+
+ul.menu li {
+  list-style:none;
+  margin:0px;
+  padding:4px;
+}
+
+ul.menu li a {
+  color:#FFFFFF;
+  display:block;
+  text-decoration:none;
+}
+
+ul.menu li:hover,
+ul.menu li:focus,
+ul.menu li:active {
+  background:#296DD6 -webkit-gradient(linear, left top, left bottom, from(#296DD6), to(#003884)); /* 003884 */
 }
