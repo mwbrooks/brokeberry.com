@@ -11,9 +11,10 @@
  *                      logic to perform that makes up the test case. The parameter to this function is a DOM
  *                      element that the test case can use to inject manipulate the DOM.
  **/
-function Case(model, os, description, test) {
+function Case(model, os, title, description, test) {
     this.model = model;
     this.os = os;
+    this.title = title;
     this.description = description;
     this.test = test;
 };
@@ -80,6 +81,7 @@ Case.prototype = {
 var cases = [
     new Case('9800',
         'all',
+        'Images and % width/heights',
         'Torch users: set an image to percentage width or height, crash your browser.', 
         function(container) {
             var img = '<img src="style/images/brokeberry-coming-soon.png" style="height:20%;" />';
@@ -89,6 +91,7 @@ var cases = [
     ),
     new Case('all',
         '4.6.0.000-4.6.1.999',
+        '%-positioned elements + scroll',
         '4.6 browser: % absolute-positioned elements change position based on scroll height',
         function(container) {
             // todo;
@@ -96,6 +99,7 @@ var cases = [
     ),
     new Case('all',
         '4.6.0.000-4.6.1.999',
+        'Missing Array.prototype.indexOf',
         '4.6.x browser: you have no Array.prototype.indexOf',
         function(container) {
             alert('Array.prototype.indexOf is: ' + Array.prototype.indexOf);
@@ -110,6 +114,7 @@ var cases = [
     ),
     new Case('all',
         '4.6.0.297-5.0.0.999',
+        'No onunload',
         "Most BlackBerry browsers don't support the onunload event",
         function(container) {
             alert("Attaching a simple alert to the onunload event of the body and window elements.");
@@ -118,8 +123,8 @@ var cases = [
             };
             window.addEventListener('unload', unload, false);
             document.body.addEventListener('unload', unload, false);
-            alert('Now going to call window.close(), you should see one more alert before this window closes.');
-            window.close();
+            alert('Now going to call window.location.reload(), you should see one more alert before this window refreshes.');
+            window.location.reload();
         }
     )
 ];

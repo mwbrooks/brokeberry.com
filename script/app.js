@@ -24,25 +24,24 @@
         },
         render = function(el) {
             // Renders cases based on detection results.
-            
             // Item template document fragment.
-            var itemTemplate = document.createElement('div');
-            itemTemplate.className = "item";
-            itemTemplate.appendChild(document.createElement('p'));
+            var itemTemplate = document.createElement('li');
             var a = document.createElement('a');
             a.href = '#';
-            a.innerHTML = 'Run Me';
             itemTemplate.appendChild(a);
-            var h = document.createElement('div');
-            h.className = 'holder';
-            itemTemplate.appendChild(h);
+            
+            // Element that will hold test case stuff.
+            var holder = document.getElementById('holder');
             
             // Test case "Run Me" click closure.
-            var closure = function(testcase, holder) {
+            var closure = function(testcase) {
                 return function(e) {
                     holder.innerHTML = '';
                     testcase.test(holder);
-                    this.innerHTML = 'Run me again';
+                    document.getElementById('description').innerHTML = testcase.description;
+                    document.getElementById('title').innerHTML = testcase.title;
+                    document.getElementById('tests').style.display = 'none';
+                    holder.parentNode.style.display = '';
                     return false;
                 }
             };
@@ -51,12 +50,10 @@
             for (var i = 0, l = cases.length; i < l; i++) {
                 var t = cases[i];
                 if (t.matches(model, os)) {
-                    var node = itemTemplate.cloneNode(true);
-                    node.childNodes[0].innerHTML = t.description;
-                    var holder = node.childNodes[2],
-                        a = node.childNodes[1];
-                        
-                    a.addEventListener('click', closure(t, holder), false);
+                    var node = itemTemplate.cloneNode(true),
+                        a = node.childNodes[0];
+                    a.addEventListener('click', closure(t), false);
+                    a.innerHTML = t.title;
                     el.appendChild(node);
                 }
             }

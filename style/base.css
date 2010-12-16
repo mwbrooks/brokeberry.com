@@ -11,7 +11,7 @@ body {
   padding-top:25px;
 }
 
-ul.menu {
+.blackbox {
   background-image: url(images/black_bg.png);
   border-color:#666666;
   border-style:solid;
@@ -22,20 +22,20 @@ ul.menu {
   width:300px;
 }
 
-ul.menu li {
+ul li {
   list-style:none;
   margin:0px;
   padding:4px;
 }
 
-ul.menu li a {
+ul li a {
   color:#FFFFFF;
   display:block;
   text-decoration:none;
 }
 
-ul.menu li:hover,
-ul.menu li:focus,
-ul.menu li:active {
+ul li:hover,
+ul li:focus,
+ul li:active {
   background:#296DD6 -webkit-gradient(linear, left top, left bottom, from(#296DD6), to(#003884)); /* 003884 */
 }

@@ -9,17 +9,11 @@
     <title>BrokeBerry</title>
   </head>
   <body>
-    <ul class="menu">
-      <li><a href="#">Loud</a></li>
-      <li><a href="#">Vibrate</a></li>
-      <li><a href="#">Quiet</a></li>
-      <li><a href="#">Normal (Active)</a></li>
-      <li><a href="#">Phone Only</a></li>
-      <li><a href="#">Off</a></li>
+    <ul class="blackbox" id="tests">
     </ul>
+    <div id="holder-container" class="blackbox" style="display:none;"><span id="title" style="float:left;">test title</span><a style="float:right;" href="#" onclick="this.parentNode.style.display = 'none';document.getElementById('tests').style.display = '';">Close</a><br/><p id="description">test description</p><br style="clear:both;"/><div id="holder"></div></div>
     <a href="http://github.com/mwbrooks/brokeberry.com">
       <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
     </a>
-    <div id="tests"></div>
   </body>
 </html>
