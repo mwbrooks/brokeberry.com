@@ -96,7 +96,7 @@ var cases = [
     ),
     new Case('all',
         '4.6.0.000-4.6.1.999',
-        '4.6.x browser: you have no Array.prototype.indexOf :(',
+        '4.6.x browser: you have no Array.prototype.indexOf',
         function(container) {
             alert('Array.prototype.indexOf is: ' + Array.prototype.indexOf);
             container.innerHTML = ['<p>At least you can patch it dynamically. JavaScript, hurray for it being self-headling!</p>',
@@ -106,6 +106,20 @@ var cases = [
                                     '       return i;',
                                     '   }',    
                                     '}</pre>'].join('\n');
+        }
+    ),
+    new Case('all',
+        '4.6.0.297-5.0.0.999',
+        "Most BlackBerry browsers don't support the onunload event",
+        function(container) {
+            alert("Attaching a simple alert to the onunload event of the body and window elements.");
+            var unload = function(e) {
+                alert('Unloading, goodbye!');
+            };
+            window.addEventListener('unload', unload, false);
+            document.body.addEventListener('unload', unload, false);
+            alert('Now going to call window.close(), you should see one more alert before this window closes.');
+            window.close();
         }
     )
 ];
