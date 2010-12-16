@@ -16,33 +16,53 @@
                     model = tokens[0].match(/\d{4}/)[0];
                     os = tokens[1].match(/\d\.\d\.\d\.\d*/)[0];
                 }
+            } else {
+                // Let's see all cases if we're on a non-BlackBerry.
+                model = 'all';
+                os = 'all';
             }
         },
         render = function(el) {
             // Renders cases based on detection results.
-            var itemTemplate = ['<div class="item">',
-                                '<p>description</p>',
-                                '<a href="javascript:void(0);">Run me</a>',
-                                '<div class="holder"></div>',
-                                '</div>'].join('');
+            
+            // Item template document fragment.
+            var itemTemplate = document.createElement('div');
+            itemTemplate.className = "item";
+            itemTemplate.appendChild(document.createElement('p'));
+            var a = document.createElement('a');
+            a.href = '#';
+            a.innerHTML = 'Run Me';
+            itemTemplate.appendChild(a);
+            var h = document.createElement('div');
+            h.className = 'holder';
+            itemTemplate.appendChild(h);
+            
+            // Test case "Run Me" click closure.
+            var closure = function(testcase, holder) {
+                return function(e) {
+                    holder.innerHTML = '';
+                    testcase.test(holder);
+                    this.innerHTML = 'Run me again';
+                    return false;
+                }
+            };
+            
+            // Loop over results and render cases.
             for (var i = 0, l = cases.length; i < l; i++) {
                 var t = cases[i];
                 if (t.matches(model, os)) {
-                    el.innerHTML += itemTemplate.split('description').join(t.description);
-                    var n = el.childNodes.length,
-                        cont = el.childNodes[n-1],
-                        holder = cont.childNodes[cont.childNodes.length-1],
-                        listener = function(e) {
-                            holder.innerHTML = '';
-                            t.test(holder);
-                            this.innerHTML = 'Run me again';
-                        };
-                    cont.childNodes[cont.childNodes.length-2].addEventListener('click', listener, false);
+                    var node = itemTemplate.cloneNode(true);
+                    node.childNodes[0].innerHTML = t.description;
+                    var holder = node.childNodes[2],
+                        a = node.childNodes[1];
+                        
+                    a.addEventListener('click', closure(t, holder), false);
+                    el.appendChild(node);
                 }
             }
         };
     window.addEventListener('load', function(e) {
         detect(navigator.userAgent);
-        render(document.body);
+        render(document.getElementById('tests'));
     }, false);
 })();

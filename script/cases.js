@@ -41,11 +41,11 @@ Case.prototype = {
         if (str.indexOf('-') > -1) return true;
         else return false;
     },
-    inRange:function(val, range) {
+    inRange:function(range, val) {
         var spread = range.replace(/\s*/g, '').split('-'),
-            isOS = this.isOS(range[0]),
-            min = (isOS?range[0]:parseInt(range[0])),
-            max = (isOS?range[1]:parseInt(range[1]));
+            isOS = this.isOS(spread[0]),
+            min = (isOS?spread[0]:parseInt(spread[0])),
+            max = (isOS?spread[1]:parseInt(spread[1]));
         if (typeof val == 'string' && val.indexOf('.') == -1) val = parseInt(val);
         if (!isOS) { 
             if (val >= min && val <= max) return true;
@@ -99,7 +99,7 @@ var cases = [
         '4.6.x browser: you have no Array.prototype.indexOf',
         function(container) {
             alert('Array.prototype.indexOf is: ' + Array.prototype.indexOf);
-            container.innerHTML = ['<p>At least you can patch it dynamically. JavaScript, hurray for it being self-headling!</p>',
+            container.innerHTML = ['<p>At least you can patch it dynamically. JavaScript, hurray for it being self-healing!</p>',
                                     '<pre>if (typeof Array.prototype.indexOf == "undefined") {',
                                     '   Array.prototype.indexOf = function(v) {',
                                     '       for (var i = this.length; i-- && this[i] != v;);',
